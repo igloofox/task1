@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <style>
+    table, th, td {
+        border: 1px solid lightslategray;
+        border-collapse: collapse;
+        }
+    </style>
+
+   <!-- <link rel="stylesheet" type="text/css"
+    media="screen and (max-device-width: 480px) and (resolution: 163dpi)"
+    href="shetland.css" /> -->
+
+    <table style="width:100%" id=row>
+        <caption style="font-size:150%;"><b>Mentees</b></caption>
+            <tr>
+                <th>Name</th>
+                <th>Rating</th> 
+                <th>Comments</th>
+            </tr>
+            <tr>
+                    <td>Nisha</td>
+                    <td>4</td> 
+                    <td>lol</td>
+                    <td><button id="edit" onclick="editthis()">Edit Mentee</button><button id="delete" onclick="deleteone(this)">Delete Mentee</button></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="name" id="name"></td>
+                <td><input type="number" name="rating" id="rating"></td> 
+                <td><input type="text" name="comment" id="comment"></td>
+                <td><button id="edit" onclick="editthis()">Edit Mentee</button><button id="delete" onclick="deleteone(this)">Delete Mentee</button></td>
+            </tr>
+    </table>
+    <br>
+    <td><button onclick="addone()">Add a Mentee</button></td>
+
+    <script>
+    function deleteone(r){
+        var i = r.parentNode.parentNode.rowIndex;
+       document.getElementById("row").deleteRow(i);
+    } 
+    function addone(){
+        var table = document.getElementById("row");
+        var r = table.insertRow(1);
+        var cell1 = r.insertCell(-1);
+        var cell2 = r.insertCell(-1);
+        var cell3 = r.insertCell(-1);
+        cell1.innerHTML = "NEW CELL1";
+        cell2.innerHTML = "NEW CELL2";
+        cell3.innerHTML = "NEW CELL3";
+    }
+    </script>
+
+</html>
