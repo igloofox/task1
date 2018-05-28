@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <style>
+    table,th,td {
+        border-collapse: collapse;
+        padding: 8px;
+        border: 1px solid rgb(202, 202, 202);
+        }
+    tr:hover{
+            background-color: rgb(233, 233, 233);
+    }
+    th {
+        padding-top: 11px;
+        padding-bottom: 13px;
+        font-family: franklin gothic medium;  
+        background-color: rgb(57, 57, 214);
+        color:white;
+    }
+    input[type=text], input[type=number]{
+        width: 100%;
+    }
+    caption{
+        font-family:franklin gothic medium;
+        color:rgb(0, 2, 100);
+    }
+    </style>
+
+    <body>
+    <table style="width:100%" id=mtable>
+        <caption style="font-size:150%;" >Mentees</caption><br>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Rating</th>        
+                <th>Comments</th>
+                <th></th>
+            </tr>
+            <tr id='row1'>
+                <td><input type="checkbox" id="for_tdcheck1"></td>
+                <td><input type="text" ></td>
+                <td><input type="number"   onkeydown="cell_change()"></td> 
+                <td><input type="text" ></td>
+                <td><button id="edit" onclick="editthis()">Edit Mentee</button></td>
+            </tr>
+    </table>
+    <br>
+
+    <button onclick="add_row()" >Add a Mentee</button>
+    <button id="delete" onclick="delete_row()">Delete Mentee</button>
+
+    <script>
+         var table= document.getElementById('mtable'),
+         rows= table.querySelectorAll('tr'),
+         rowcount= rows.length,
+         addedrow=document.createElement('tr');
+         
+         function delete_row(){
+           // document.write(rowcount);
+            var i=1;
+            while(i<=rowcount){
+            if(document.getElementById("for_tdcheck"+i).checked==true && rowcount>1) {
+                table.removeChild(rows[rowcount-1]);
+                rowcount-=1;
+                i++;
+            }
+            }
+        }
+
+        function add_row(){
+            var clndrow=addedrow.cloneNode(true);
+            clndrow.setAttribute('id','row'+ rowcount);
+         // FOR ALERT   clndrow.setAttribute('onclick', 'alert(this.id)');
+
+            clndrow.getElementsByTagName('td')[0].setAttribute('id','for_tdcheck'+ rowcount);
+          //  document.getElementsByTagName('td')[2].setAttribute('id','for_tdrate'+ +rowcount);
+            rowcount+=1;
+            clndrow.innerHTML= '<td><input type="checkbox" ></td><td><input type="text"></td><td><input type="number" onkeydown="cell_change()"></td><td><input type="text" ></td><td><button id="edit" onclick="editthis()">Edit Mentee</button></td>';
+            table.appendChild(clndrow);
+        }
+        function cell_change(){
+            
+            td_no='for_td'+ rowcount;
+            var cell=document.getElementById(td_no);
+           cell.style.backgroundColor = "red";
+        }
+    
+    </script>
