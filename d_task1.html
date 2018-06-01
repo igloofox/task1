@@ -55,7 +55,7 @@
          addedrow=document.createElement('tr');
          
          function delete_row(){
-           // document.write(rowcount);
+           
             var i=1;
             while(i<=rowcount){
             if(document.getElementById("for_tdcheck"+i).checked==true && rowcount>1) {
@@ -69,10 +69,7 @@
         function add_row(){
             var clndrow=addedrow.cloneNode(true);
             clndrow.setAttribute('id','row'+ rowcount);
-         // FOR ALERT   clndrow.setAttribute('onclick', 'alert(this.id)');
-
             clndrow.getElementsByTagName('td')[0].setAttribute('id','for_tdcheck'+ rowcount);
-          //  document.getElementsByTagName('td')[2].setAttribute('id','for_tdrate'+ +rowcount);
             rowcount+=1;
             clndrow.innerHTML= '<td><input type="checkbox" ></td><td><input type="text"></td><td><input type="number" onkeydown="cell_change()"></td><td><input type="text" ></td><td><button id="edit" onclick="editthis()">Edit Mentee</button></td>';
             table.appendChild(clndrow);
